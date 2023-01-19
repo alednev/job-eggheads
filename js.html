@@ -1,0 +1,18 @@
+<script>
+    function printOrderTotal(responseString) {
+        let responseJSON = JSON.parse(responseString);
+        let total = 0;
+
+        responseJSON.forEach(function (item, index) {
+            if (item.price !== undefined) {
+                total += item.price;
+            }
+        });
+
+        console.log('Стоимость заказа: ' + ((total > 0) ? total + ' руб.' : 'Бесплатно'));
+    }
+
+    printOrderTotal('[{"name": "first", "price": 1000}, {"name":"second", "price": 500}]');
+    printOrderTotal('[{"name": "first", "price": 0}, {"name":"second", "price": 0}]');
+    printOrderTotal('[{"name": "first", "price": 10}, {"name":"second"}]');
+</script>
